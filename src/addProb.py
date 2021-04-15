@@ -2,10 +2,10 @@
 import os, bisect
 
 # 题目名称
-name = "Number of Ways of Cutting a Pizza"
-ID = 1444
-url = "https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/"
-difficult = "Hard"
+name = "Flipping an Image"
+ID = 832
+url = "https://leetcode.com/problems/flipping-an-image/"
+difficult = "Easy"
 prog = ['c', 'cpp', 'py', 'go', 'js', 'java']
 
 
@@ -14,24 +14,32 @@ ID = "{0:04}".format(ID)
 dirName =  "-".join([ID] + name.split(" "))
 if not os.path.exists(dirName):
     os.makedirs(dirName)
-    for p in prog[1:]:
+    # for p in prog[1:]:
+    for p in ['cpp']: # only for cpp
         fileName = './' + dirName + '/' + ID + '.' + p
         with open(fileName, 'w') as f:
             pass
-
+        
 # 在readme文件中添加题目
 with open("../README.md") as f:
     data = f.readlines()
 
 tData = data[6:]
 insertData = [ID, '[' + name + ']' + '(' + url + ')', 'c']
-for p in prog[1:]:
-    fileName = './src/' + dirName + '/' + ID + '.' + p
-    if p == 'cpp':
-        p = 'c++'
-    elif p == 'py':
-        p = 'python'
-    insertData.append('[' + p + ']' + '(' + fileName + ')')
+
+### only for cpp ###
+fileName = './src/' + dirName + '/' + ID + '.' + 'cpp'
+insertData.append('[c++]' + '(' + fileName + ')')
+insertData += ['python'] + prog[3:]
+### only for cpp ###
+
+# for p in prog[1:]:
+#     fileName = './src/' + dirName + '/' + ID + '.' + p
+#     if p == 'cpp':
+#         p = 'c++'
+#     elif p == 'py':
+#         p = 'python'
+#     insertData.append('[' + p + ']' + '(' + fileName + ')')
 
 insertData.append(difficult)
 insertData = '|' + '|'.join(insertData) + '|'
